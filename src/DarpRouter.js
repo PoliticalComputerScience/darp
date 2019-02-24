@@ -5,8 +5,9 @@ import Landing from './Landing';
 
 class DarpRouter extends Component {
   render() {
+    const baseUrl = process.env.NODE_ENV === 'production' ? process.env.PUBLIC_URL : '/';
     return (
-      <Router>
+      <Router basename={baseUrl}>
         <div>
           <Route exact path='/' component={Landing} />
           <Route path='/app' component={App} />
