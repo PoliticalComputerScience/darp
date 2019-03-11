@@ -8,6 +8,7 @@ import {
 	Marker,
 } from 'react-simple-maps';
 import { Motion, spring } from 'react-motion';
+import ReactTooltip from 'react-tooltip';
 
 const wrapperStyles = {
 	width: "100%",
@@ -36,6 +37,10 @@ class App extends Component {
 		this.handleZoomOut = this.handleZoomOut.bind(this);
 		this.handleCityClick = this.handleCityClick.bind(this);
 		this.handleReset = this.handleReset.bind(this);
+	}
+
+	componentDidMount() {
+		setTimeout(ReactTooltip.rebuild, 100);
 	}
 
 	handleZoomIn() {
@@ -104,6 +109,7 @@ class App extends Component {
 										geographies.map((geography, i) => geography.id !== "010" && (
 											<Geography
 												key={i}
+												data-tip={geography.properties.name}
 												geography={geography}
 												projection={projection}
 												style={{
@@ -150,6 +156,7 @@ class App extends Component {
 						</ComposableMap>
 					)}
 				</Motion>
+				<ReactTooltip />
 			</div>
 		)
 	}
