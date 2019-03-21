@@ -5,7 +5,7 @@ class Description extends Component {
 		return (
 			<div>
 				<h1>
-					Description!
+					Description for country{this.props.country && (' with id ' + this.props.country)}!
 				</h1>
 				<p>
 					Lorem ipsum dolor imet...

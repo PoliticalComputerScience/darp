@@ -28,7 +28,7 @@ const cities = [
 
 class Map extends Component {
 	constructor() {
-		super()
+		super();
 		this.state = {
 			center: [0,20],
 			zoom: 1,
@@ -112,6 +112,7 @@ class Map extends Component {
 												data-tip={geography.properties.name}
 												geography={geography}
 												projection={projection}
+												onClick={this.props.selectCountry}
 												style={{
 													default: {
 														fill: "#ECEFF1",
@@ -158,7 +159,7 @@ class Map extends Component {
 				</Motion>
 				<ReactTooltip />
 			</div>
-		)
+		);
 	}
 }
 
