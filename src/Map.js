@@ -16,14 +16,13 @@ const wrapperStyles = {
 	margin: "0 auto",
 };
 
-const cities = [
-	{ name: "Zurich", coordinates: [8.5417,47.3769] },
-	{ name: "Singapore", coordinates: [103.8198,1.3521] },
-	{ name: "San Francisco", coordinates: [-122.4194,37.7749] },
-	{ name: "Sydney", coordinates: [151.2093,-33.8688] },
-	{ name: "Lagos", coordinates: [3.3792,6.5244] },
-	{ name: "Buenos Aires", coordinates: [-58.3816,-34.6037] },
-	{ name: "Shanghai", coordinates: [121.4737,31.2304] },
+const regions = [
+// [longitude, latitude]
+	{ name: "North America", coordinates: [-101.2996,47.1164] },
+	{ name: "Central (?) America", coordinates: [-85.1024,13.4746] },
+	{ name: "European Union", coordinates: [15.2551,54.5260] },
+	{ name: "Asia", coordinates: [96,48] },
+	{ name: "Africa", coordinates: [21.0936,7.1881] },
 ];
 
 class Map extends Component {
@@ -35,32 +34,34 @@ class Map extends Component {
 		};
 		this.handleZoomIn = this.handleZoomIn.bind(this);
 		this.handleZoomOut = this.handleZoomOut.bind(this);
-		this.handleCityClick = this.handleCityClick.bind(this);
+		this.handleRegionClick = this.handleRegionClick.bind(this);
 		this.handleReset = this.handleReset.bind(this);
 	}
 
 	componentDidMount() {
-		setTimeout(ReactTooltip.rebuild, 100);
+		setTimeout(ReactTooltip.rebuild, 1000);
 	}
 
 	handleZoomIn() {
 		this.setState({
-			zoom: this.state.zoom * 2,
+			zoom: (this.state.zoom >= 32 ? this.state.zoom : this.state.zoom * 2),
 		});
 	}
 
 	handleZoomOut() {
 		this.setState({
-			zoom: this.state.zoom / 2,
+			zoom: (this.state.zoom <= 1 ? this.state.zoom : this.state.zoom / 2),
 		});
 	}
 
-	handleCityClick(city) {
-		this.setState({
-			zoom: 2,
-			center: city.coordinates,
-		});
-	}
+	handleRegionClick(evt) {
+	    const regionId = evt.target.getAttribute("data-region")
+	    const region = regions[regionId]
+	    this.setState({
+	      center: region.coordinates,
+	      zoom: (region.name === "Central (?) America" || region.name === "European Union" ? 4 : 2),
+	    })
+  	}
 
 	handleReset() {
 		this.setState({
@@ -71,7 +72,20 @@ class Map extends Component {
 
 	render() {
 		return (
+		  <div>
 			<div style={wrapperStyles}>
+				{
+				regions.map((region, i) => (
+				  <button
+				    id="a"
+				    key={i}
+				    data-region={i}
+				    onClick={this.handleRegionClick}
+				    >
+				    { region.name }
+				  </button>
+				))
+				}
 				<button onClick={this.handleZoomIn}>
 					{ "Zoom in" }
 				</button>
@@ -81,6 +95,8 @@ class Map extends Component {
 				<button onClick={this.handleReset}>
 					{ "Reset" }
 				</button>
+			</div>
+			<div style={wrapperStyles}>
 				<Motion
 					defaultStyle={{
 						zoom: 1,
@@ -136,28 +152,27 @@ class Map extends Component {
 											/>
 										))}
 								</Geographies>
-								<Markers>
-									{cities.map((city, i) => (
-										<Marker
-											key={i}
-											marker={city}
-											onClick={this.handleCityClick}
-											>
-											<circle
-												cx={0}
-												cy={0}
-												r={6}
-												fill="#FF5722"
-												stroke="#DF3702"
-											/>
-										</Marker>
-									))}
-								</Markers>
+									<Markers>
+						                {
+						                  regions.map((region, i) => (
+						                    <Marker key={i} marker={region}>
+						                      <circle
+						                        cx={0}
+						                        cy={0}
+						                        r={6}
+						                        fill="#FF5722"
+						                        stroke="#DF3702"
+						                      />
+						                    </Marker>
+						                  ))
+						                }
+	              					</Markers>
 							</ZoomableGroup>
 						</ComposableMap>
 					)}
 				</Motion>
 				<ReactTooltip />
+			</div>
 			</div>
 		);
 	}
