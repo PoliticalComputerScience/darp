@@ -4,8 +4,6 @@ import {
 	ZoomableGroup,
 	Geographies,
 	Geography,
-	Markers,
-	Marker,
 } from 'react-simple-maps';
 import { Motion, spring } from 'react-motion';
 import ReactTooltip from 'react-tooltip';
@@ -17,7 +15,6 @@ const wrapperStyles = {
 };
 
 const regions = [
-// [longitude, latitude]
 	{ name: "North America", coordinates: [-101.2996,47.1164] },
 	{ name: "Central (?) America", coordinates: [-85.1024,13.4746] },
 	{ name: "European Union", coordinates: [15.2551,54.5260] },
@@ -152,21 +149,6 @@ class Map extends Component {
 											/>
 										))}
 								</Geographies>
-									<Markers>
-						                {
-						                  regions.map((region, i) => (
-						                    <Marker key={i} marker={region}>
-						                      <circle
-						                        cx={0}
-						                        cy={0}
-						                        r={6}
-						                        fill="#FF5722"
-						                        stroke="#DF3702"
-						                      />
-						                    </Marker>
-						                  ))
-						                }
-	              					</Markers>
 							</ZoomableGroup>
 						</ComposableMap>
 					)}
