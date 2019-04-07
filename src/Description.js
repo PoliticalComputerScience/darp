@@ -25,13 +25,12 @@ class Description extends Component {
 					{data.name}
 				</h1>
 				<h2>
-					<div style={{
-						'display': 'inline',
+					<span style={{
 						'font-weight': 'normal',
 						'padding-right': '5px',
 					}}>
 						Overall:
-					</div>
+					</span>
 					{data.overall}
 				</h2>
 				<p>

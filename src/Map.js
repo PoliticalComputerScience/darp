@@ -69,60 +69,61 @@ class Map extends Component {
 
 	render() {
 		return (
-		  <div>
-			<div style={wrapperStyles}>
-				{
-				regions.map((region, i) => (
-				  <button
-				    id="a"
-				    key={i}
-				    data-region={i}
-				    onClick={this.handleRegionClick}
-				    >
-				    { region.name }
-				  </button>
-				))
-				}
-				<button onClick={this.handleZoomIn}>
-					{ "Zoom in" }
-				</button>
-				<button onClick={this.handleZoomOut}>
-					{ "Zoom out" }
-				</button>
-				<button onClick={this.handleReset}>
-					{ "Reset" }
-				</button>
-			</div>
-			<div style={wrapperStyles}>
-				<Motion
-					defaultStyle={{
-						zoom: 1,
-						x: 0,
-						y: 20,
-					}}
-					style={{
-						zoom: spring(this.state.zoom, {stiffness: 280, damping: 32}),
-						x: spring(this.state.center[0], {stiffness: 280, damping: 32}),
-						y: spring(this.state.center[1], {stiffness: 280, damping: 32}),
-					}}
-				>
-					{({zoom,x,y}) => (
-						<ComposableMap
-							projectionConfig={{ scale: 205 }}
-							width={980}
-							height={551}
-							style={{
-								width: "100%",
-								height: "auto",
-							}}
-							>
-							<ZoomableGroup center={[x,y]} zoom={zoom}>
-								<Geographies geography="/static/world-50m.json">
-									{(geographies, projection) =>
-										geographies.map((geography, i) => geography.id !== "010" && (
-											<Geography
+			<div>
+				<div style={wrapperStyles}>
+					{
+						regions.map((region, i) => (
+							<button
+								id="a"
+								key={i}
+								data-region={i}
+								onClick={this.handleRegionClick}
+								>
+								{ region.name }
+							</button>
+						))
+					}
+					<button onClick={this.handleZoomIn}>
+						{ "Zoom in" }
+					</button>
+					<button onClick={this.handleZoomOut}>
+						{ "Zoom out" }
+					</button>
+					<button onClick={this.handleReset}>
+						{ "Reset" }
+					</button>
+				</div>
+				<div style={wrapperStyles}>
+					<Motion
+						defaultStyle={{
+							zoom: 1,
+							x: 0,
+							y: 20,
+						}}
+						style={{
+							zoom: spring(this.state.zoom, {stiffness: 280, damping: 32}),
+							x: spring(this.state.center[0], {stiffness: 280, damping: 32}),
+							y: spring(this.state.center[1], {stiffness: 280, damping: 32}),
+						}}
+					>
+						{({zoom,x,y}) => (
+							<ComposableMap
+								projectionConfig={{ scale: 205 }}
+								width={980}
+								height={551}
+								style={{
+									width: "100%",
+									height: "auto",
+								}}
+								>
+								<ZoomableGroup center={[x,y]} zoom={zoom}>
+									<Geographies geography="/static/world-50m.json">
+										{(geographies, projection) =>
+											geographies.map((geography, i) => geography.id !== "010" && (
+												<Geography
 												key={i}
-												data-tip={geography.properties.name}
+												data-tip
+												data-for={geography.id}
 												geography={geography}
 												projection={projection}
 												onClick={this.props.selectCountry}
@@ -146,15 +147,21 @@ class Map extends Component {
 														outline: "none",
 													},
 												}}
-											/>
-										))}
-								</Geographies>
-							</ZoomableGroup>
-						</ComposableMap>
-					)}
-				</Motion>
-				<ReactTooltip />
-			</div>
+												/>
+											))}
+									</Geographies>
+								</ZoomableGroup>
+							</ComposableMap>
+						)}
+					</Motion>
+				</div>
+				{this.props.data && Object.keys(this.props.data).map(id => (
+					<ReactTooltip key={id} id={id}>
+						{this.props.data[id].name}
+						<br />
+						Grade: {this.props.data[id].overall}
+					</ReactTooltip>
+				))}
 			</div>
 		);
 	}
