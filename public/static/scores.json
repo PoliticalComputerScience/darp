@@ -1,6 +1,12 @@
 {
 	"USA": {
-		"overall": 5,
-		"description": "This is a description"
+		"name": "United States",
+		"overall": "F",
+		"description": "Facebook is here"
+	},
+	"MEX": {
+		"name": "Mexico",
+		"overall": "B",
+		"description": "seems legit"
 	}
 }
