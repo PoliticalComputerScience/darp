@@ -33,6 +33,25 @@ class Map extends Component {
 		this.handleZoomOut = this.handleZoomOut.bind(this);
 		this.handleRegionClick = this.handleRegionClick.bind(this);
 		this.handleReset = this.handleReset.bind(this);
+		this.getColor = this.getColor.bind(this);
+	}
+
+	getColor(id) {
+		if (!this.props.data || !(id in this.props.data)) {
+			return '#fff';
+		}
+		switch(this.props.data[id].overall) {
+			case 'A':
+				return '#662D91';
+			case 'B':
+				return '#8C61AC';
+			case 'C':
+				return '#B296C8';
+			case 'D':
+				return '#D8CAE3'
+			default:
+				return '#fff';
+		}
 	}
 
 	componentDidMount() {
@@ -129,13 +148,13 @@ class Map extends Component {
 												onClick={this.props.selectCountry}
 												style={{
 													default: {
-														fill: "#ECEFF1",
+														fill: this.getColor(geography.id),
 														stroke: "#607D8B",
 														strokeWidth: 0.75,
 														outline: "none",
 													},
 													hover: {
-														fill: "#CFD8DC",
+														fill: this.getColor(geography.id),
 														stroke: "#607D8B",
 														strokeWidth: 0.75,
 														outline: "none",
