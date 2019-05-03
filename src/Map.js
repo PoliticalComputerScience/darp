@@ -81,6 +81,9 @@ class Map extends Component {
 	}
 
 	render() {
+		if (!this.props.data) {
+			return (<h1>Loading...</h1>);
+		}
 		return (
 			<div id="outermap">
 				<div id="regions">
