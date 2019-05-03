@@ -8,12 +8,6 @@ import {
 import { Motion, spring } from 'react-motion';
 import ReactTooltip from 'react-tooltip';
 
-const wrapperStyles = {
-	width: "100%",
-	maxWidth: 980,
-	margin: "0 auto",
-};
-
 const regions = [
 	{ name: "North America", coordinates: [-101.2996,47.1164] },
 	{ name: "Central (?) America", coordinates: [-85.1024,13.4746] },
@@ -88,12 +82,12 @@ class Map extends Component {
 
 	render() {
 		return (
-			<div>
-				<div style={wrapperStyles}>
+			<div id="outermap">
+				<div id="regions">
 					{
 						regions.map((region, i) => (
 							<button
-								id="a"
+								className="region"
 								key={i}
 								data-region={i}
 								onClick={this.handleRegionClick}
@@ -102,17 +96,19 @@ class Map extends Component {
 							</button>
 						))
 					}
-					<button onClick={this.handleZoomIn}>
-						{ "Zoom in" }
-					</button>
-					<button onClick={this.handleZoomOut}>
-						{ "Zoom out" }
-					</button>
-					<button onClick={this.handleReset}>
+					<button onClick={this.handleReset} className="region" id="reset">
 						{ "Reset" }
 					</button>
 				</div>
-				<div style={wrapperStyles}>
+				<div id="controls">
+					<button onClick={this.handleZoomIn} id="plus">
+						{ "+" }
+					</button>
+					<button onClick={this.handleZoomOut} id="minus">
+						{ "-" }
+					</button>
+				</div>
+				<div id="map">
 					<Motion
 						defaultStyle={{
 							zoom: 1,
@@ -131,7 +127,6 @@ class Map extends Component {
 								width={980}
 								height={551}
 								style={{
-									width: "100%",
 									height: "auto",
 								}}
 								>
@@ -160,9 +155,9 @@ class Map extends Component {
 														outline: "none",
 													},
 													pressed: {
-														fill: "#FF5722",
-														stroke: "#607D8B",
-														strokeWidth: 0.75,
+														fill: this.getColor(geography.id),
+														stroke: "#662D91",
+														strokeWidth: 1.5,
 														outline: "none",
 													},
 												}}
@@ -174,13 +169,15 @@ class Map extends Component {
 						)}
 					</Motion>
 				</div>
-				{this.props.data && Object.keys(this.props.data).map(id => (
-					<ReactTooltip key={id} id={id}>
-						{this.props.data[id].name}
-						<br />
-						Grade: {this.props.data[id].overall}
-					</ReactTooltip>
-				))}
+				<div style={{display: "inline"}}>
+					{this.props.data && Object.keys(this.props.data).map(id => (
+						<ReactTooltip key={id} id={id}>
+							{this.props.data[id].name}
+							<br />
+							Grade: {this.props.data[id].overall}
+						</ReactTooltip>
+					))}
+				</div>
 			</div>
 		);
 	}

@@ -13,21 +13,21 @@ class Description extends Component {
 	render() {
 		if (this.props.country == null) {
 			return (
-				<h1>
+				<h1 id="description">
 					Select a country to see more.
 				</h1>
 			);
 		}
 		if (!(this.props.country in this.props.data)) {
 			return (
-				<h1>
+				<h1 id="description">
 					No data on this country.
 				</h1>
 			);
 		}
 		const data = this.props.data[this.props.country];
 		return (
-			<div>
+			<div id="description" key={this.props.country}>
 				<h1>
 					{data.name}
 				</h1>
