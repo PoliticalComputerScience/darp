@@ -20,7 +20,7 @@ class Landing extends Component {
 						</h2>
 						<Link to="/app">
 							<button id="button" to="/app">
-								See our interactive map
+								SEE OUR INTERACTIVE MAP
 							</button>
 						</Link>
 						<h3 id="subhead">
