@@ -1,14 +1,43 @@
 /* Overall */
+html {
+  height: 100%;
+}
+
 body {
   background-color: #fbf9fc;
   font-family: 'Poppins', sans-serif;
+  height: 100%;
 }
 
 button {
   font-family: 'Poppins', sans-serif;
 }
 
+#root, #routerdiv {
+  height: 100%;
+}
+
+#background {
+  background-color: #fff;
+  background: url("./trianglify.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 130%;
+  width: 130%;
+  z-index: 0;
+  position: fixed;
+  filter: blur(10px);
+  margin: -15% -15%;
+  opacity: 0.8;
+}
+
+#content {
+  position: fixed;
+  z-index: 1;
+}
+
 .App {
+  height: 100%;
   text-align: center;
 }
 
@@ -155,4 +184,3 @@ button {
   border-top: none;
   border-radius: 0px 0px 3px 3px;
 }
-
