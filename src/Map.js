@@ -130,7 +130,7 @@ class Map extends Component {
 								projectionConfig={{ scale: 205 }}
 								height={550}
 								style={{
-									width: "70vw"
+									width: "65vw"
 								}}
 								>
 								<ZoomableGroup center={[x,y]} zoom={zoom}>
