@@ -7,13 +7,14 @@ import {
 } from 'react-simple-maps';
 import { Motion, spring } from 'react-motion';
 import ReactTooltip from 'react-tooltip';
+import './App.css';
 
 const regions = [
-	{ name: "North America", coordinates: [-101.2996,47.1164] },
-	{ name: "Central (?) America", coordinates: [-85.1024,13.4746] },
-	{ name: "European Union", coordinates: [15.2551,54.5260] },
+	{ name: "North America", coordinates: [-101,47] },
+	{ name: "South America", coordinates: [-68,-20] },
+	{ name: "European Union", coordinates: [15,56] },
 	{ name: "Asia", coordinates: [96,48] },
-	{ name: "Africa", coordinates: [21.0936,7.1881] },
+	{ name: "Africa", coordinates: [21,7] },
 ];
 
 class Map extends Component {
@@ -69,7 +70,7 @@ class Map extends Component {
 	    const region = regions[regionId]
 	    this.setState({
 	      center: region.coordinates,
-	      zoom: (region.name === "Central (?) America" || region.name === "European Union" ? 4 : 2),
+	      zoom: (region.name === "European Union" ? 4 : 1.7),
 	    })
   	}
 
@@ -127,10 +128,9 @@ class Map extends Component {
 						{({zoom,x,y}) => (
 							<ComposableMap
 								projectionConfig={{ scale: 205 }}
-								width={980}
-								height={551}
+								height={550}
 								style={{
-									height: "auto",
+									width: "70vw"
 								}}
 								>
 								<ZoomableGroup center={[x,y]} zoom={zoom}>

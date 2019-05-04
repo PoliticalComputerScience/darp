@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Map from './Map';
 import Description from './Description';
 import './App.css';
@@ -39,9 +40,19 @@ class App extends Component {
 
 	render() {
 		return (
-			<div>
+			<div id="overall">
+				<h1>
+				  <Link className="App-link" to="/">
+		            DARP
+		          </Link>
+				</h1>
 				<Map selectCountry={this.selectCountry} data={this.state.data} />
-				<Description country={this.state.selected} data={this.state.data} />
+				<Description country={this.state.selected} data={this.state.data} /> <br/>
+				<p id="description">
+				  <Link className="App-link" to="/details">
+		            Some background about this project.
+		          </Link>
+				</p>
 			</div>
 		);
 	}
