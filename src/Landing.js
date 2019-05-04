@@ -12,17 +12,25 @@ class Landing extends Component {
 						<h1 id="title">
 							DARP
 						</h1>
+            <h2 id="subtitle">
+            Data Access, Rights and Privacy
+            </h2>
+            <h2 id="pcs_title">
+            By Political Computer Science @ Berkeley
+            </h2>
 						<h3 id="subhead">
 							A visualization tool that compares data access, rights, and privacy policies around the world.
 						</h3>
 						<br/>
-						<Link className="App-link" to="/app">
-							Here's our interactive map that displays our findings.
-						</Link>
+            <Link to="/app">
+						<button id="button" to="/app"> 
+							Here is our interactive map that displays our findings. 
+						</button>
+            </Link>
 						<br/>
-						<p>
-							We've developed a rubric to evaluate effectiveness of these policies.
-							We've explained the process <Link className="App-link" to="/details">here</Link>.
+						<p id="rubric_des">
+							We have developed a rubric to evaluate effectiveness of these policies.
+							We have explained the process <Link className="App-link" to="/details">here</Link>.
 						</p>
 						<p id="text">
 
