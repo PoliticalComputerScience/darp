@@ -1,6 +1,11 @@
 /* Overall */
 body {
   background-color: #fbf9fc;
+  font-family: 'Poppins', sans-serif;
+}
+
+button {
+  font-family: 'Poppins', sans-serif;
 }
 
 .App {
@@ -29,7 +34,7 @@ body {
 }
 
 #subhead {
-  font-family: courier;
+  font-family: courier, monospace;
 }
 
 #info {
@@ -39,7 +44,7 @@ body {
 
 .App-link {
   color: #662d91;
-  font-family: courier;
+  font-family: courier, monospace;
 }
 
 /* Description under map */

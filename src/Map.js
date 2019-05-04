@@ -39,13 +39,13 @@ class Map extends Component {
 			case 'A':
 				return '#662D91';
 			case 'B':
-				return '#8C61AC';
+				return '#8A55B2';
 			case 'C':
-				return '#B296C8';
+				return '#AE82CF';
 			case 'D':
-				return '#D8CAE3'
+				return '#D1B4E7'
 			default:
-				return '#fff';
+				return '#F3EBFA';
 		}
 	}
 
