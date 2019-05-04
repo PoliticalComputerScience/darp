@@ -109,7 +109,7 @@ class Map extends Component {
 						{ "+" }
 					</button>
 					<button onClick={this.handleZoomOut} id="minus">
-						{ "-" }
+						{ "–" }
 					</button>
 				</div>
 				<div id="map">
@@ -134,7 +134,7 @@ class Map extends Component {
 								}}
 								>
 								<ZoomableGroup center={[x,y]} zoom={zoom}>
-									<Geographies geography="/static/world-50m.json">
+									<Geographies geography="static/world-50m.json">
 										{(geographies, projection) =>
 											geographies.map((geography, i) => geography.id !== "010" && (
 												<Geography

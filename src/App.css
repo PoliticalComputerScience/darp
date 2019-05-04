@@ -29,14 +29,14 @@ body {
 }
 
 #content {
-  position: fixedgit comm;
+  position: fixed;
   z-index: 1;
   left:0;
   right:0;
   margin-left: auto;
   margin-right: auto;
   position: absolute;
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
 }
 
 .App {
@@ -70,7 +70,7 @@ body {
 #subtitle {
   margin-top:-55px;
   font-size: 35px;
-  color: #662D91;  
+  color: #662D91;
 }
 
 #pcs_title {
@@ -97,19 +97,20 @@ body {
   font-family: Roboto;
 }
 
-button {
-  margin-top: 10px;
+header button#button {
+  margin: 60px 0;
   line-height: 60px;
   font-weight: bold;
   padding: 0 25px;
-  background: #D1B4E7;
+  background: #662d91;
+  color: #fff;
   /*background: #AE82CF;*/
   border: none;
   font-size: 20px;
-  font-family: 'Roboto', sans-serif;
+  font-family: Poppins, sans-serif;
 }
 
-button:hover {
+header button#button:hover {
   /*background: #D1B4E7;*/
   background: #AE82CF;
 }
@@ -141,13 +142,12 @@ button:hover {
   margin-bottom: 3px;
   padding: 3px;
   background-color: inherit;
-  font-size: 15pt;
+  font-size: 12pt;
 }
 
 .region:hover {
-  /*border-bottom: 2px solid #662D91;*/
+  border-bottom: 2px solid #662D91;
   padding-bottom: 1px;
-  background-color: #D1B4E7;
 }
 
 .region:focus {
@@ -155,14 +155,14 @@ button:hover {
 }
 
 #regions {
-  margin-top: 40px;
+  margin-top: 60px;
   margin-right: 10px;
   width: 190px;
   float: left;
 }
 
 #reset {
-  /*margin-top: 10px;*/
+  margin-top: 10px;
 }
 
 /* Map-related? */
@@ -210,17 +210,22 @@ button:hover {
 
 #controls button {
   display: block;
-  /*width: 22px;*/
-  /*border: 1px solid #662d91;*/
+  width: 30px;
+  border: 1px solid #662d91;
   text-align: center;
 }
 
 #controls button#plus {
   border-radius: 3px 3px 0px 0px;
   font-size: 20px;
+  border-bottom: none;
 }
 
 #controls button#minus {
   border-radius: 0px 0px 3px 3px;
-  font-size: 35px;
+  font-size: 20px;
+}
+
+.pcs-link {
+  font-family: Poppins, sans-serif;
 }
